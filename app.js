@@ -12,6 +12,7 @@ var path = require('path');
 var app = express();
 
 // all environments
+app.use(express.bodyParser({uploadDir:'./public/uploads'}));
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -35,6 +36,10 @@ app.get('/users', user.list);
 //app.get('/login', routes.login);
 //app.get('/logout', routes.logout);
 app.post('/upload', routes.upload);
+//app.post('/upload', function(req, res, next) {
+//    console.log(req.body);
+//    console.log(req.files);
+//});
 app.get('/upload', routes.upload);
 //app.get('/list',routes.list);
 
