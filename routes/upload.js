@@ -1,10 +1,18 @@
-exports.upload = function(req, res){
-    if (req.method.toLowerCase() == "get")
-    {
+module.exports = {
+    priority: 1000, //this is the `/` handler, should it should be the last route.
+    path: '/upload',
+
+    //this function gets passed the express object one time for any extra setup
+    init: function(app) { 
+        
+    },
+
+    GET: function(req, res) {
         res.render('upload_form', { title: 'upload' , method: req.method });
-    } else if (req.method.toLowerCase() == "post"){
+    },
+
+    POST: function(req, res) {
         var fs = require('fs');
-        var sys = require('sys');
         var path = require('path');
 
         fs.rename(req.files.displayImage.path , "." + path.sep + "public" + path.sep + "uploads" + path.sep + req.files.displayImage.name, function (err) {

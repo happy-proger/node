@@ -1,6 +1,6 @@
 module.exports = {
     priority: 1000, //this is the `/` handler, should it should be the last route.
-    path: '/',
+    path: '/add',
 
     //this function gets passed the express object one time for any extra setup
     init: function(app) { 
@@ -8,7 +8,7 @@ module.exports = {
     },
 
     GET: function(req, res) {
-        res.render('index', { title: 'Express' });
+        res.render('add', { title: 'add' , method: req.method });
     },
 
     POST: function(req, res) {

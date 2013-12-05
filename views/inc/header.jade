@@ -1,0 +1,25 @@
+head
+  title= title
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
+  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+  style(type='text/css')
+    body { padding-top: 60px; padding-bottom: 40px; }
+    .sidebar-nav { padding: 9px 0; }
+div.container
+ div.navbar.navbar-fixed-top(role=navigation)
+    div.container
+     div.navbar-collapse.collapse
+        ul.nav.navbar-nav
+            li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                    | Social
+                    b.caret
+                  ul.dropdown-menu(role='menu')
+                    li.socials
+                      g:plusone(annotation='inline', width='150')
+                    li.socials 
+                        a A
+                    li.socials
+                      a.twitter-share-button(href='https://twitter.com/share') Tweet
