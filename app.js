@@ -9,13 +9,17 @@ var http = require('http');
 var path = require('path');
 var MongoStore = require('connect-mongo')(express);
 var app = express();
-
+app.use(express.bodyParser({uploadDir:'./public/uploads'}));
 app.use(app.router); 
 console.log(app.routes);
 var ControllerTree = rr(__dirname + '/controllers');
 ControllerTree.init.router(app, ControllerTree);
-var Auth = ControllerTree.init.auth();
-app.use(express.bodyParser({uploadDir:'./public/uploads'}));
+app.use(function(req, res, next) {
+    req.app = app;
+    next();
+});
+global.app = app;
+
 app.set('port', 3000 )
 // || process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -37,9 +41,7 @@ app.use(express.session({
     // see https://github.com/kcbanner/connect-mongo#options for more options
   })
 }));
-
 app.use(express.static(path.join(__dirname, 'public')));
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -52,7 +54,8 @@ console.log(process.versions);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
   console.log(process.memoryUsage());
-//   console.log(app.routes);
+   console.log(app.routes);
+    ControllerTree.init.auth(app);
 //   console.log(app.routes.get[2]);
 //   console.log(ControllerTree.treetest.test);
 //   console.log(app.address + app.get('port') );

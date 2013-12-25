@@ -54,7 +54,7 @@ module.exports = function (app, ControllerTree) {
   , '/registeradmin': {
       get: function (req,res) { res.render('registeradmin'); res.end();},
       post: ControllerTree.init.registeradmin
-      },
+      }
                       
 //   '/!logout': {get: [ControllerTree.session.check,ControllerTree.session.logout]}
 //   '/$admin': {
