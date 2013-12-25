@@ -1,14 +1,17 @@
 {
-  "name": "application-name",
+  "name": "forms",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.5",
-    "jade": "*",
-    "connect-mongo": "*"
-    ,"express-dynamic-router": "*"
+    "express": "3.4.7",
+    "jade": "0.35.0",
+    "connect-mongo": "0.4.0"
+    , "mongo-express-auth":"0.1.0"
+    ,"expressive-routes":"0.2.0",
+    "recursive-require": "0.0.1"
+    ,"mongodb":"1.3.23"
   }
 }

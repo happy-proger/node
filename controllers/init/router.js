@@ -50,7 +50,12 @@ module.exports = function (app, ControllerTree) {
     post: ControllerTree.test,
     get: ControllerTree.test
   },
-  '/!$logout': {get: [ControllerTree.session.check,ControllerTree.session.logout]}
+  '/$logout!': {get: [ControllerTree.session.check,ControllerTree.session.logout]}
+  , '/registeradmin': {
+      get: function (req,res) { res.render('registeradmin'); res.end();},
+      post: ControllerTree.init.registeradmin
+      },
+                      
 //   '/!logout': {get: [ControllerTree.session.check,ControllerTree.session.logout]}
 //   '/$admin': {
 //     get: test('Admin.index'),
