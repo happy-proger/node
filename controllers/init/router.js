@@ -45,15 +45,23 @@ module.exports = function (app, ControllerTree) {
 //   }
 // };
     var routes = {
-  '/': {get: function(req,res,next){res.render('index');}},
+  '/': {get: ControllerTree.action.view.index},
   '/login': {
-    post: ControllerTree.test,
-    get: ControllerTree.test
+    post: ControllerTree.action.auth.login,
+    get: ControllerTree.action.view.login
   },
   '/$logout!': {get: [ControllerTree.session.check,ControllerTree.session.logout]}
   , '/registeradmin': {
       get: function (req,res) { res.render('registeradmin'); res.end();},
       post: ControllerTree.init.registeradmin
+      }
+      , '/upload': {
+      get: ControllerTree.action.view.upload ,
+      post: ControllerTree.action.store.upload
+      }
+      ,'/form': {
+      get: ControllerTree.action.view.form ,
+      post: ControllerTree.action.store.form
       }
                       
 //   '/!logout': {get: [ControllerTree.session.check,ControllerTree.session.logout]}

@@ -37,7 +37,8 @@ app.use(express.session({
     maxAge  : 10000              // expire the session(-cookie) after 10 seconds
   },
   store   : new MongoStore({
-    db: 'sessionstore'
+    db: 'sessionstore',
+    auto_reconnect: true
     // see https://github.com/kcbanner/connect-mongo#options for more options
   })
 }));
@@ -54,7 +55,7 @@ console.log(process.versions);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
   console.log(process.memoryUsage());
-   console.log(app.routes);
+//   console.log(app.routes);
     ControllerTree.init.auth(app);
 //   console.log(app.routes.get[2]);
 //   console.log(ControllerTree.treetest.test);
