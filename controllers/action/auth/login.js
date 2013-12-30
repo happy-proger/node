@@ -1,4 +1,3 @@
 module.exports = function(req, res) {
-        //add check
-        res.redirect('/');
+        Auth.login(req, res, function(req,res){res.redirect('back')})
     }

@@ -5,7 +5,7 @@ $(document).ready(function(){
         var select = $(this);
             $('#myPage').fadeOut("slow",  function () {
                 var page= $(this);
-                $(this).load('http://192.168.1.55:3000' + select.val(), function () {
+                $(this).load('http://' + location.host + select.val(), function () {
                     page.fadeIn();
                 })
                 });

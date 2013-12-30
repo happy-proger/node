@@ -8,19 +8,19 @@ module.exports = function (app, ControllerTree) {
 //   var test = require(controllersDir + '/test')
 //   var = require(controllersDir + '/');
 //   var = require(controllersDir + '/');
-  var expressive = require('expressive-routes');
+    var expressive = require('expressive-routes');
 
-  var action = ControllerTree.action;
-  var admin = ControllerTree.admin;
-  var init = ControllerTree.init;
-  var helper = ControllerTree.helper;
-  var session = init.session;
-  var test = ControllerTree.test;
-  test('1');
-  var triggers = {
-  '!': helper.ensureAuthenticated,
-  '$': helper.ensureAdministrator
-};
+    var action = ControllerTree.action;
+    var admin = ControllerTree.admin;
+    var init = ControllerTree.init;
+    var helper = ControllerTree.helper;
+    var session = init.session;
+    var test = ControllerTree.test;
+    test('1');
+    var triggers = {
+        '!': helper.ensureAuthenticated,
+        '$': helper.ensureAdministrator
+    };
 // var routes = {
 //   '/': {get: Main.index},
 //   '/login': {
@@ -45,25 +45,25 @@ module.exports = function (app, ControllerTree) {
 //   }
 // };
     var routes = {
-  '/': {get: ControllerTree.action.view.index},
-  '/login': {
-    post: ControllerTree.action.auth.login,
-    get: ControllerTree.action.view.login
-  },
-  '/$logout!': {get: [ControllerTree.session.check,ControllerTree.session.logout]}
-  , '/registeradmin': {
-      get: function (req,res) { res.render('registeradmin'); res.end();},
-      post: ControllerTree.init.registeradmin
-      }
-      , '/upload': {
-      get: ControllerTree.action.view.upload ,
-      post: ControllerTree.action.store.upload
-      }
-      ,'/form': {
-      get: ControllerTree.action.view.form ,
-      post: ControllerTree.action.store.form
-      }
-                      
+        '/': {get: ControllerTree.action.view.index},
+        '/login': {
+            post: ControllerTree.action.auth.login,
+            get: ControllerTree.action.view.login
+        },
+        '/$logout!': {get: [ControllerTree.session.check,ControllerTree.session.logout]}
+        , '/registeradmin': {
+            get: function (req,res) { res.render('registeradmin'); res.end();},
+            post: ControllerTree.init.registeradmin
+        }
+        , '/upload': {
+            get: ControllerTree.action.view.upload ,
+            post: ControllerTree.action.store.upload
+        }
+        ,'/form': {
+            get: ControllerTree.action.view.form ,
+            post: ControllerTree.action.store.form
+        }
+
 //   '/!logout': {get: [ControllerTree.session.check,ControllerTree.session.logout]}
 //   '/$admin': {
 //     get: test('Admin.index'),
@@ -80,12 +80,12 @@ module.exports = function (app, ControllerTree) {
 //     get: test('Account.index'),
 //     post: test('Account.updateProfile')
 //   }
-};
-var opts = {
-  triggerMap: triggers,
-  verbose: true
-};
+    };
+    var opts = {
+        triggerMap: triggers,
+        verbose: true
+    };
 
-expressive(routes, app, opts);
+    expressive(routes, app, opts);
 
 }
