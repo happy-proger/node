@@ -15,7 +15,7 @@ app.use(express.cookieParser('your secret here'));
 app.use(express.session({
     secret  : 'watata',
     cookie  : {
-        maxAge  : 10000              // expire the session(-cookie) after 10 seconds
+        maxAge  : 1200000              // expire the session(-cookie) after 10 seconds
     },
     store   : new MongoStore({
         db: 'sessionstore',

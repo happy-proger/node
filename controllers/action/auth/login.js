@@ -1,3 +1,3 @@
 module.exports = function(req, res) {
-        Auth.login(req, res, function(req,res){res.redirect('back')})
+        app.locals.Auth.login(req, res, function(){res.redirect('back')})
     }

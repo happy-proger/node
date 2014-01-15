@@ -18,8 +18,10 @@ module.exports = function (app, ControllerTree) {
     var test = ControllerTree.test;
     test('1');
     var triggers = {
-        '!': helper.ensureAuthenticated,
-        '$': helper.ensureAdministrator
+        '$': helper.ensureUser,
+        '!': helper.ensureAdministrator,
+        '%': helper.ensureUpr,
+        '&': helper.ensureAuthenticated
     };
 // var routes = {
 //   '/': {get: Main.index},
@@ -50,7 +52,7 @@ module.exports = function (app, ControllerTree) {
             post: ControllerTree.action.auth.login,
             get: ControllerTree.action.view.login
         },
-        '/$logout!': {get: [ControllerTree.session.check,ControllerTree.session.logout]}
+        '/&logout': {get: ControllerTree.action.auth.logout}
         , '/registeradmin': {
             get: function (req,res) { res.render('registeradmin'); res.end();},
             post: ControllerTree.init.registeradmin
@@ -71,7 +73,7 @@ module.exports = function (app, ControllerTree) {
             get: ControllerTree.action.view.comp,
             post: ControllerTree.action.json.cdata
         },
-        '/add': {
+        '/!add': {
             get: ControllerTree.action.view.add,
             post: ControllerTree.action.view.add
         }
