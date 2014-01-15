@@ -1,8 +1,36 @@
-extends layout
 block content
-    .container
-          #Page(data-role='page')
-            nav#Panel(data-role='panel') ...menu...
-            #Header(data-role='header') ...button...text...
-            #Content(data-role='content') ...welcome text...
-    
+     style(type='text/css')
+            input {
+                float: right;
+            }
+        p=req.method
+        script(src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js")
+
+        script(src="js/add.js")
+       div#Form
+ if ("GET" == req.method)
+    script(src="js/render_form.js")
+         //validator plugin
+    div.container
+      div.col-md-3
+          //select user role (admin/upr/user)
+          select#select_role.form-control
+            each val, key in roles
+                option(value=key)= key
+
+ if ("POST" == req.method)
+    p=req.body.role
+    form#add(action="").col-md-3
+
+            each val, key in roles[req.body.role].fields
+                .form-group
+                    label(class="input")= key
+                    input(type=val.type, name=key, id=key)
+            .form-group
+                input(type="hidden", name="new",value="new", id="new")
+                input(type="hidden", name="role",value=req.body.role, id="role")
+            .btn(id="submit") Add
+    p.col-md-1(id="existence")
+
+
+

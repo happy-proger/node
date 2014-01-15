@@ -43,8 +43,9 @@ global.ini_db_mapper = function (input,reverse){
         'MEM1 Ser.N' : 'MEM1 Ser_N',
         'MEM2 Ser.N' : 'MEM2 Ser_N',
         'MEM3 Ser.N' : 'MEM3 Ser_N',
+        'MEM4 Ser.N' : 'MEM4 Ser_N',
         'System ser.N': 'System ser_N',
-        'S.M.A..R.T': 'S_M_A_R_T'
+        'S.M.A.R.T': 'S_M_A_R_T'
     }
     var invert = function (obj) {
 

@@ -1,6 +1,7 @@
 module.exports = function (app) {
     var Auth = app.locals.Auth = require('mongo-express-auth');
-Auth.init({
+
+    Auth.init({
     mongo: { 
         dbName: 'myApp',
         collectionName: 'accounts'

@@ -62,6 +62,18 @@ module.exports = function (app, ControllerTree) {
         ,'/form': {
             get: ControllerTree.action.view.form ,
             post: ControllerTree.action.store.form
+        },
+        '/comp': {
+            get: ControllerTree.action.view.comp,
+            post: ControllerTree.action.view.comp
+        },
+        '/cdata': {
+            get: ControllerTree.action.view.comp,
+            post: ControllerTree.action.json.cdata
+        },
+        '/add': {
+            get: ControllerTree.action.view.add,
+            post: ControllerTree.action.view.add
         }
 
 //   '/!logout': {get: [ControllerTree.session.check,ControllerTree.session.logout]}

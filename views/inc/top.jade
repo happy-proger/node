@@ -17,6 +17,6 @@ div
             form.form-inline
               h1 Select
               select#select.form-control
-                option(value='/login') Login
-                option(value='/upload') Upload
-                option(value='/upload') Upload
+                  each val, key in menu
+                      option(value=val)= key
+

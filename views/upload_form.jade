@@ -5,10 +5,11 @@
    Time: 12:45
    To change this template use File | Settings | File Templates.
 // extends layout
-
+script(src='/js/upload.js')
 block content
     h1= title
     p type is #{method}
-    form(action="upload", method="post", enctype="multipart/form-data")
-        input(type="file", name="displayImage")
+    form(action="upload", method="post", enctype="multipart/form-data", id="uploadForm")
+        input.required(type="text", name="FIO")
+        input.required(type="file", name="displayImage")
         input(type="submit", name="Save")

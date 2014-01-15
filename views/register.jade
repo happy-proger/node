@@ -8,11 +8,19 @@ block content
         
             form(action="login", method="post")
                 .form-group
-                    label(class="input") Username
+                    label(class="input") Фамилия
                     input(type="text", name="username")
                 .form-group
-                    label(class="input") Password
-                    input(type="text", name="pass")
+                    label(class="input") Имя
+                    input(type="text", name="username")
+                .form-group
+                    label(class="input") Отчество
+                    input(type="text", name="username")
+                .form-group
+                    label(class="input") Место работы
+                    select#select_upr.form-control
+                        each val, key in list
+                            option(value='/' + val)= key
                 .checkbox
                     label
                         input(type="checkbox")

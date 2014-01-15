@@ -6,8 +6,9 @@ module.exports = function (db_uri) {
         if(err) throw err;
 //        var collection =
         var collection = db.collection('data');
-        collection.ensureIndex( { "Hardware.Board Ser_N": '' }, { unique: true } , function(){
-            if (err) {collection.createIndex({ "Hardware.Board Ser_N": '' }, { unique: true } )}
+        var indexes = { "Info.MAC_Addr": 1 , "IP_Addr"  : 1};
+        collection.ensureIndex( indexes, { unique: true } , function(){
+            if (err) {collection.createIndex(indexes, { unique: true } )}
         });
         app.locals.dbstore = db;
         // collection.insert({b:2}, function(err, docs) {

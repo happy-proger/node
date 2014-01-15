@@ -1,0 +1,30 @@
+//
+   Created by Admin on 08.01.14.
+
+//extends layout
+include inc/header
+block content
+    script(src="js/comp.js")
+ div
+    .navbar.navbar-default.navbar-fixed-top
+        .container
+            .navbar-header
+                a.navbar-brand(href='#') Brand
+            ul.nav.navbar-nav
+                li.active
+                    a(href='#') Home
+                li
+                    a(href='#') Link
+                li
+                    a(href='#') More
+                li
+                    a(href='#') Options
+        .container
+            form.form-inline
+                h1 SelectComp
+                select#selectComp.form-control
+                    each value, key in list
+                        option(value=value.Info.User_FIO)= key + ':' + value.Info.User_FIO
+                        //option(value=value)= key + ':' + value.Hardware.{Board Ser_N}
+div#data.container
+    p pppp

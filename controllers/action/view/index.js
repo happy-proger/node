@@ -1,5 +1,14 @@
 module.exports = function(req, res) {
-    res.render('index', { title: 'Express' });
+//     TODO: set user type from req.session (admin, upr, user)
+    var menu = {
+        Login: '/login',
+        Upload: '/upload',
+        "admin:Add":'/add',
+        "user:edit":'/user',
+        "upr:edit":'/upr',
+        "Logout":'/logout'
+    }
+    res.render('index', { title: 'Express' , menu:menu});
 //        res.end();
 //        console.log(err);
 }
