@@ -8,7 +8,7 @@ var  rr = require('recursive-require');
 var http = require('http');
 var path = require('path');
 var MongoStore = require('connect-mongo')(express);
-var app = express();
+var app = global.app = express();
 
 app.use(express.bodyParser({uploadDir:'./public/uploads'}));
 app.use(express.cookieParser('your secret here'));
@@ -31,58 +31,7 @@ ControllerTree.init.router(app, ControllerTree);
 //    req.app = app;
 //    next();
 //});
-global.app = app;
-global.ini_db_mapper = function (input,reverse){
-    var Map = {
-        'CPU.CPUID' : 'CPU_CPUID',
-        'CPU.BrandName' : 'CPU_BrandName',
-        'Board ser.N' : 'Board ser_N',
-        'Chassis ser.N' : 'Chassis ser_N',
-        'CPU1 ser.N' : 'CPU1 ser_N',
-        'CPU2 ser.N' : 'CPU2 ser_N',
-        'MEM1 Ser.N' : 'MEM1 Ser_N',
-        'MEM2 Ser.N' : 'MEM2 Ser_N',
-        'MEM3 Ser.N' : 'MEM3 Ser_N',
-        'MEM4 Ser.N' : 'MEM4 Ser_N',
-        'System ser.N': 'System ser_N',
-        'S.M.A.R.T': 'S_M_A_R_T'
-    }
-    var invert = function (obj) {
-
-        var new_obj = {};
-
-        for (var prop in obj) {
-            if(obj.hasOwnProperty(prop)) {
-                new_obj[obj[prop]] = prop;
-            }
-        }
-
-        return new_obj;
-    };
-    if (reverse) {
-        invert(Map);
-    }
-    if(typeof(input)=="undefined"){return false;};
-    if(typeof(input)=="object")
-    {
-//        console.log(typeof(input));
-//        console.log(Object.keys(input));
-        for (var k in input){
-            for(var key in Map)
-            {
-                var kk = key ;
-//                console.log (k + ': ' + input[k]);
-                if (input[k].hasOwnProperty(kk)){
-//                    console.log(input[k][kk]);
-                    input[k][Map[kk]] = input[k][kk];
-                    delete input[k][kk];
-                }
-            }
-
-        };
-        return input;
-    }
-}
+ControllerTree.init.globals(app);
 app.set('port', 3000 )
 // || process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));

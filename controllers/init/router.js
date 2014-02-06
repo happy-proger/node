@@ -61,6 +61,14 @@ module.exports = function (app, ControllerTree) {
             get: ControllerTree.action.view.upload ,
             post: ControllerTree.action.store.upload
         }
+        , '/register': {
+            get: ControllerTree.action.view.register ,
+            post: ControllerTree.action.store.register
+        }
+        , '/user': {
+            get: ControllerTree.action.view.edit ,
+            post: ControllerTree.action.store.edit
+        }
         ,'/form': {
             get: ControllerTree.action.view.form ,
             post: ControllerTree.action.store.form
@@ -72,6 +80,10 @@ module.exports = function (app, ControllerTree) {
         '/cdata': {
             get: ControllerTree.action.view.comp,
             post: ControllerTree.action.json.cdata
+        },
+        '/test': {
+            get: ControllerTree.action.view.test,
+            post: ControllerTree.action.view.test
         },
         '/!add': {
             get: ControllerTree.action.view.add,

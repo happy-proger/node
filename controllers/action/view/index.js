@@ -6,7 +6,9 @@ module.exports = function(req, res) {
         "admin:Add":'/add',
         "user:edit":'/user',
         "upr:edit":'/upr',
-        "Logout":'/logout'
+        "Logout":'/logout',
+        "register":'/register',
+        "test":'/test'
     }
     res.render('index', { title: 'Express' , menu:menu});
 //        res.end();

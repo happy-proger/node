@@ -25,7 +25,7 @@ module.exports = function(req, res) {
     console.log('File: ');
 //    console.log(File);
 //    console.log(i++);
-    var MappedFile = ini_db_mapper(File);
+    var MappedFile = req.app.locals.ini_db_mapper(File);
     MappedFile.Info['User_FIO'] = req.body.FIO;
     delete MappedFile['Config_changes'];
     console.log('MappedFile: ');

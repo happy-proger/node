@@ -33,26 +33,17 @@ module.exports = function(req, res) {
 //
 //    v.name = new XRegExp('');
 
-    Auth.register(req, function (err,result) {
-//        console.log(result[0]._id);
 
-        if (err) {
-            console.log(err);
-            res.json(400, err)
-        } else {
+
             var udata = {
-
-                "_id": result[0]._id,
+                "id": new require('mongodb').ObjectID(result._id),
                 "password":req.body.password,
                 "role": req.body.role,
                 "new": req.body.new,
                 "name":req.body.name,
                 "secondName":req.body.secondName,
-                "surname":req.body.surname,
-                "upr":req.body.upr
-
+                "surname":req.body.surname
             }
-
 
             ucoll.save(udata, function (err,result) {
                 if (err) {
@@ -63,8 +54,8 @@ module.exports = function(req, res) {
                 }
                 //send "success on success
             });
-        }
-    });
+
+
         //write to udata{
             //send 200}}
 

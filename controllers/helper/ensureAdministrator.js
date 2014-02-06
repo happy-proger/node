@@ -4,11 +4,13 @@
         Auth.getAccount(req, function (err , result) {
             console.log ('err: %j', err);
             console.log ('result: %j' ,result);
-            if ("admin" == result.role)
+            if (err)
+                res.redirect(401, '/');
+            else if (result.hasOwnProperty('role') && "admin" == result.role)
             {
                 next();
             } else {
-                res.redirect('index');
+                res.redirect('/');
             };
         } );
 

@@ -23,22 +23,23 @@ $(function () {
 //        alert('ya submit');
         var form = $('#add');
         var data = {
-            "username":$('#login').val(),
+            "username":$('#username').val(),
             "password": $('#pass').val(),
             "role": $('#role').val(),
             "new": $('#new').val(),
             "name":$('#name').val(),
             "secondName":$('#secondName').val(),
-            "surname":$('#surname').val()
-//            "upr":''
+            "surname":$('#surname').val(),
+            "upr":$('#upr').val()
         }
+        console.log(data);
 //        var data = form.serializeObject();
 //        console.log('data: ' + data);
-//        alert ('data:' + data);
+        alert (JSON.stringify(data));
 //        alert ('raw form: ' + JSON.stringify($('#add').serializeArray()));
 //        alert ('ajax start: ' + JSON.stringify(data));
         $.ajax({
-            url: '/add',
+            url: '/register',
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',

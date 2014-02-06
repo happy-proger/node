@@ -1,4 +1,9 @@
-extends layout
+//extends layout
+script(src = "js/register.js")
+style(type='text/css')
+    input {
+        float: right;
+    }
 div.row
     h1= title
 h1= title
@@ -6,23 +11,27 @@ block content
     div.container
         
         
-            form(action="login", method="post")
+            form#add(action="", method="post").col-md-3
+                .form-group
+                    label(class="input") Логин
+                    input(type="text", name="username", id="username")
                 .form-group
                     label(class="input") Фамилия
-                    input(type="text", name="username")
+                    input(type="text", name="surname", id="surname")
                 .form-group
                     label(class="input") Имя
-                    input(type="text", name="username")
+                    input(type="text", name="name", id="name")
                 .form-group
                     label(class="input") Отчество
-                    input(type="text", name="username")
+                    input(type="text", name="secondName", id="secondName")
+                .form-group
+                    label(class="input") Пароль
+                    input(type="password", name="pass", id="pass")
                 .form-group
                     label(class="input") Место работы
-                    select#select_upr.form-control
-                        each val, key in list
-                            option(value='/' + val)= key
-                .checkbox
-                    label
-                        input(type="checkbox")
-                        | Remember me
-                    button(type="submit", class="button") Login
+
+                select#upr.form-control
+                    each val, key in list
+                        option(value=val.name)= val.name
+
+                .btn(id="submit") Register

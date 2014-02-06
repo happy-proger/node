@@ -24,8 +24,8 @@ block content
 
             each val, key in roles[req.body.role].fields
                 .form-group
-                    label(class="input")= key
-                    input(type=val.type, name=key, id=key)
+                    label(class="input")= val.label
+                    input(type=val.type, name=val.name, id=key)
             .form-group
                 input(type="hidden", name="new",value="new", id="new")
                 input(type="hidden", name="role",value=req.body.role, id="role")

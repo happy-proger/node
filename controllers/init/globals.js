@@ -1,67 +1,6 @@
-module.exports = function(req, res) {
-    var ucoll = app.locals.dbstore.collection('udata')
-    if (req.body.hasOwnProperty("new")){
-        //add new user
-        console.log('new');
-        var Auth = app.locals.Auth;
+module.exports = function (app) {
 
-        Auth.register(req, function (err,result){
-//            res.json(200, JSON.stringify({"new":"new"}));
-
-            console.log('ended registration');
-            console.log('account: %j', result);
-            if (err){
-                console.log('err: %j' , err);
-////                res.render('index');
-                res.json(200, {"err":err});
-            }else{
-                var udata = {
-
-                    "_id": result[0]._id,
-                    "password":req.body.password,
-                    "role": req.body.role,
-//                    "new": req.body.new,
-                    "name":req.body.name,
-                    "secondName":req.body.secondName,
-                    "surname":req.body.surname
-                }
-                if (err) {
-                    console.log(err);
-                    res.json(400, err)
-                } else {
-
-                    ucoll.save(udata, function (err,result) {
-                        if (err) {
-                            console.log(err);
-                            res.json(400, err)
-                        } else {
-                            res.json({success:'success'})
-                        }
-                        //send "success on success
-                    });
-                }
-//                console.log('successfully registered');
-//                res.json(200,{"success":'success'});
-            }
-//            console.log('res.end');
-//            res.end();
-//            console.log('return');
-//
-        });
-
-
-    } else {
-    var menu = {
-        Login: '/login',
-        Upload: '/upload',
-        "admin:Add":'/add',
-        "user:edit":'/user',
-        "upr:edit":'/upr',
-        "Logout":'/logout',
-        "register":'/register',
-        "test":'/test'
-    }
-    var roles = {
+    app.locals.roles = {
         admin: {
             fields : {
                 username : {
@@ -136,9 +75,68 @@ module.exports = function(req, res) {
 //                        ,validator:
                 }}
         }
-    }
+    };
+    app.locals.menu = {
+        Login: '/login',
+        Upload: '/upload',
+        "admin:Add":'/add',
+        "user:edit":'/user',
+        "upr:edit":'/upr',
+        "Logout":'/logout',
+        "register":'/register',
+        "test":'/test'
+    };
+    app.locals.ini_db_mapper = function (input,reverse){
+        var Map = {
+            'CPU.CPUID' : 'CPU_CPUID',
+            'CPU.BrandName' : 'CPU_BrandName',
+            'Board ser.N' : 'Board ser_N',
+            'Chassis ser.N' : 'Chassis ser_N',
+            'CPU1 ser.N' : 'CPU1 ser_N',
+            'CPU2 ser.N' : 'CPU2 ser_N',
+            'MEM1 Ser.N' : 'MEM1 Ser_N',
+            'MEM2 Ser.N' : 'MEM2 Ser_N',
+            'MEM3 Ser.N' : 'MEM3 Ser_N',
+            'MEM4 Ser.N' : 'MEM4 Ser_N',
+            'System ser.N': 'System ser_N',
+            'S.M.A.R.T': 'S_M_A_R_T'
+        }
+        var invert = function (obj) {
 
-    res.render('add', { title: 'add' , req: req ,roles:roles, menu:menu});
-//        res.end();
-    }
-}
+            var new_obj = {};
+
+            for (var prop in obj) {
+                if(obj.hasOwnProperty(prop)) {
+                    new_obj[obj[prop]] = prop;
+                }
+            }
+
+            return new_obj;
+        };
+        if (reverse) {
+            invert(Map);
+        }
+        if(typeof(input)=="undefined"){return false;};
+        if(typeof(input)=="object")
+        {
+//        console.log(typeof(input));
+//        console.log(Object.keys(input));
+            for (var k in input){
+                for(var key in Map)
+                {
+                    var kk = key ;
+//                console.log (k + ': ' + input[k]);
+                    if (input[k].hasOwnProperty(kk)){
+//                    console.log(input[k][kk]);
+                        input[k][Map[kk]] = input[k][kk];
+                        delete input[k][kk];
+                    }
+                }
+
+            };
+            return input;
+        }
+    };
+
+
+};
