@@ -23,7 +23,7 @@ module.exports = function(req, res) {
 
 //                        result.push.apply(result, array);
                         console.log(result);
-                        res.render('register', { title: 'Express', list : result});
+                        res.render('register', { title: 'register', list : result});
 
                     })
                 });

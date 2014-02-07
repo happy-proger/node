@@ -1,3 +1,6 @@
 module.exports = function(req, res) {
-        app.locals.Auth.logout(req, res, function(req,res){res.redirect('back')})
-    }
+    console.log('logout start')
+    app.locals.Auth.logout(req, res)
+    res.redirect('/');
+
+}

@@ -1,4 +1,5 @@
 // extends layout
+script(src='js/login.js')
 block content
     div.container
         form(action="login", method="post")
@@ -8,8 +9,6 @@ block content
                 .form-group
                     label(class="input") Password
                     input(type="text", type="password", placeholder="Enter password" , name="password")
-                .checkbox
-                    label
-                        input(type="checkbox")
-                        | Remember me
-                    button(type="submit", class="button") Login
+
+                button(type="submit", class="button") Login
+        a#register.btn Зарегистрироваться

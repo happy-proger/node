@@ -1,7 +1,15 @@
 $(document).ready(function(){
-    function renderForm(json){
-        var html=""
 
+    function nextPage(){
+
+        $('#select option:selected').next('option').attr('selected', 'selected');
+        $("#select").change();
+
+    }
+    function prevPage(){
+
+        $('#select option:selected').prev('option').attr('selected', 'selected');
+        $('#select').change();
     }
     $('#select').change(function(){
 //        alert('this.val(): ' + $(this).val());
@@ -17,4 +25,11 @@ $(document).ready(function(){
     });
     var opt = 'Login';
     $('#select').trigger('change');
+
+    $('#next').bind('click' , nextPage);
+    $('#prev').bind('click' , prevPage);
+    $('#logout').click(function (){
+        window.location = '/logout';
+    })
+
 });

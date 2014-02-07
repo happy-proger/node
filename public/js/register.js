@@ -3,6 +3,12 @@
  */
 $(function () {
 //    alert ('ya add.js');
+    function nextPage(){
+
+        $('#select option:selected').next('option').attr('selected', 'selected');
+        $("#select").change();
+
+    }
     $.fn.serializeObject = function()
     {
         var o = {};
@@ -51,6 +57,7 @@ $(function () {
                 }else if (data.hasOwnProperty('success')){
                     $('p#existence').html("successfully added a user");
                 }
+                nextPage();
 //                alert ('success');
 //            $('form-alert').slideUp();
 //            $('#form-success').html(responseText).slideDown('slow');

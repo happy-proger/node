@@ -76,16 +76,78 @@ module.exports = function (app) {
                 }}
         }
     };
-    app.locals.menu = {
-        Login: '/login',
-        Upload: '/upload',
-        "admin:Add":'/add',
-        "user:edit":'/user',
-        "upr:edit":'/upr',
-        "Logout":'/logout',
-        "register":'/register',
-        "test":'/test'
-    };
+//    app.locals.menu = {
+//        "Регистрация": {
+//            name: 'Регистрация',
+//            path: '/register',
+//            visibility:['anonymous']},
+//        "Авторизация": {
+//            name: 'Авторизация',
+//            path: '/login',
+//            visibility:['anonymous']},
+//        "Редактирование": {
+//            name: 'Редактирование',
+//            path: '/user',
+//            visibility:['user', 'upr']},
+//        "Выход": {
+//            name: 'Выход',
+//            path: '/logout',
+//            visibility:['all']},
+//        "Add": {
+//            name: 'Add',
+//            path: '/add',
+//            visibility:['admin']},
+//        "uedit": {
+//            name: 'Редактирование',
+//            path: '/upr',
+//            visibility:['upr']},
+//        "user:edit": {
+//            name: 'user:edit',
+//            path: '/user',
+//            visibility:['admin']},
+////        Upload: '/upload',        
+//        "test": {
+//            name: 'test',
+//            path: '/test',
+//            visibility:['admin']}
+//    };
+    app.locals.menu = [
+
+         {
+            name: 'Авторизация',
+            path: '/login',
+            visibility:['anonymous']},
+        {
+            name: 'Регистрация',
+            path: '/register',
+            visibility:['anonymous']},
+         {
+            name: 'Редактирование',
+            path: '/user',
+            visibility:['user', 'upr']},
+
+         {
+            name: 'Add',
+            path: '/add',
+            visibility:['admin']},
+         {
+            name: 'Редактирование',
+            path: '/upr',
+            visibility:['upr']},
+         {
+            name: 'user:edit',
+            path: '/user',
+            visibility:['admin']},
+//        Upload: '/upload',        
+         {
+            name: 'test',
+            path: '/test',
+            visibility:['admin']}
+//        {
+//            name: 'Выход',
+//            path: '/logout',
+//            visibility:['user','upr','admin']}
+    ];
     app.locals.ini_db_mapper = function (input,reverse){
         var Map = {
             'CPU.CPUID' : 'CPU_CPUID',

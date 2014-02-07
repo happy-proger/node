@@ -35,7 +35,7 @@ module.exports = function(req, res) {
                                         { name : array[i].name}
                                     )
                                 }
-                                res.render('edit', { title: 'Express', json:json, list:result});
+                                res.render('edit', { title: 'edit', json:json, list:result});
                             })})})}})
     })
 

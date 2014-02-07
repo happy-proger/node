@@ -1,4 +1,4 @@
 module.exports = function(req, res) {
-        res.render('form', { title: 'Express' });
+        res.render('form', { title: 'form' });
         res.end();
     }

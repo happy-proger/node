@@ -51,13 +51,13 @@ module.exports = function (app, ControllerTree) {
         '/login': {
             post: ControllerTree.action.auth.login,
             get: ControllerTree.action.view.login
-        },
-        '/&logout': {get: ControllerTree.action.auth.logout}
-        , '/registeradmin': {
+        }
+        , '/logout': {get: ControllerTree.action.auth.logout, post: ControllerTree.action.auth.logout}
+        , '/!registeradmin': {
             get: function (req,res) { res.render('registeradmin'); res.end();},
             post: ControllerTree.init.registeradmin
         }
-        , '/upload': {
+        , '/&upload': {
             get: ControllerTree.action.view.upload ,
             post: ControllerTree.action.store.upload
         }
@@ -65,23 +65,23 @@ module.exports = function (app, ControllerTree) {
             get: ControllerTree.action.view.register ,
             post: ControllerTree.action.store.register
         }
-        , '/user': {
+        , '/&user': {
             get: ControllerTree.action.view.edit ,
             post: ControllerTree.action.store.edit
         }
-        ,'/form': {
+        ,'/&form': {
             get: ControllerTree.action.view.form ,
             post: ControllerTree.action.store.form
         },
-        '/comp': {
+        '/&comp': {
             get: ControllerTree.action.view.comp,
             post: ControllerTree.action.view.comp
         },
-        '/cdata': {
+        '/&cdata': {
             get: ControllerTree.action.view.comp,
             post: ControllerTree.action.json.cdata
         },
-        '/test': {
+        '/!test': {
             get: ControllerTree.action.view.test,
             post: ControllerTree.action.view.test
         },

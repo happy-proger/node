@@ -5,18 +5,18 @@ div
             .navbar-header
               a.navbar-brand(href='#') Brand
             ul.nav.navbar-nav
-              li.active
-                a(href='#') Home
               li
-                a(href='#') Link
+                a#prev.btn < Назад
               li
-                a(href='#') More
+                a#next.btn Вперед >
+              li
+                a#logout.btn [Выход]
               li
                 a(href='#') Options
           .container
             form.form-inline
               h1 Select
               select#select.form-control
-                  each val, key in menu
-                      option(value=val)= key
+                  each val in menu
+                      option(value=val.path)= val.name
 
