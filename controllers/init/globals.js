@@ -124,7 +124,7 @@ module.exports = function (app) {
          {
             name: 'Редактирование',
             path: '/user',
-            visibility:['user', 'upr']},
+            visibility:['user']},
 
          {
             name: 'Add',

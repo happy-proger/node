@@ -3,7 +3,16 @@
  */
 $(function () {
 //    alert ('ya add.js');
-$('#purp').val()
+//    for (var i=0; i<$('#prov').length; i++){
+//        if ($('#prov').options[i].value  == $('#prov_s').value)
+//        {
+//            $('#prov').selectedIndex=i;
+//        }
+//        alert ($('#prov').options[i].value);
+//    }
+
+//    alert ($('#prov').options[1].val());
+//    $("#prov [value=$('#prov_s').value]").attr("selected","selected");
     $.fn.serializeObject = function()
     {
         var o = {};
@@ -24,23 +33,29 @@ $('#purp').val()
 //        alert('ya submit');
         var form = $('#add');
         var data = {
-            "username":$('#username').val(),
-            "password": $('#pass').val(),
-            "role": $('#role').val(),
-            "new": $('#new').val(),
             "name":$('#name').val(),
-            "secondName":$('#secondName').val(),
-            "surname":$('#surname').val(),
-            "upr":$('#upr').val()
+            "desc":$('#desc').val(),
+            "purp":$('#purp').val(),
+            "prov":$('#prov').val(),
+            "ctype":$('#ctype').val(),
+            "dspd":$('#dspd').val(),
+            "uspd":$('#uspd').val(),
+            "cq":$('#cq').val(),
+            "MFU_color":$('#MFU_color').val(),
+            "MFU_bw":$('#MFU_bw').val(),
+            "Copier_color":$('#Copier_color').val(),
+            "Copier_bw":$('#Copier_bw').val(),
+            "Scanner_color":$('#Scanner_color').val(),
+            "Scanner_bw":$('#Scanner_bw').val()
         }
         console.log(data);
 //        var data = form.serializeObject();
 //        console.log('data: ' + data);
-        alert (JSON.stringify(data));
+//        alert (JSON.stringify(data));
 //        alert ('raw form: ' + JSON.stringify($('#add').serializeArray()));
 //        alert ('ajax start: ' + JSON.stringify(data));
         $.ajax({
-            url: '/user',
+            url: '/upr',
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
@@ -69,6 +84,16 @@ $('#purp').val()
 //                alert ('err: ' + err.statusCode() + " " + err.statusText);
             }
         }) //.done(function (data) {alert(JSON.stringify(data))});
+    });
+    $('#prov option ,#purp option ,#ctype option').each(function(){
+//        alert(this.value+$(this).attr("name")+this.name)
+        if (this.value  == $(this).attr("name")){
+//            alert(this.value)
+            $(this).attr("selected", true)
+        } else {
+            $(this).attr("selected", false)
+        }
+//        alert(this.text);
     });
 
 });

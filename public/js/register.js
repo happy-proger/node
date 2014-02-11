@@ -3,9 +3,9 @@
  */
 $(function () {
 //    alert ('ya add.js');
-    function nextPage(){
+    function prevPage(){
 
-        $('#select option:selected').next('option').attr('selected', 'selected');
+        $('#select option:selected').prev('option').attr('selected', 'selected');
         $("#select").change();
 
     }
@@ -41,7 +41,7 @@ $(function () {
         console.log(data);
 //        var data = form.serializeObject();
 //        console.log('data: ' + data);
-        alert (JSON.stringify(data));
+//        alert (JSON.stringify(data));
 //        alert ('raw form: ' + JSON.stringify($('#add').serializeArray()));
 //        alert ('ajax start: ' + JSON.stringify(data));
         $.ajax({
@@ -57,7 +57,7 @@ $(function () {
                 }else if (data.hasOwnProperty('success')){
                     $('p#existence').html("successfully added a user");
                 }
-                nextPage();
+                prevPage();
 //                alert ('success');
 //            $('form-alert').slideUp();
 //            $('#form-success').html(responseText).slideDown('slow');

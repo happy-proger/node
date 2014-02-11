@@ -26,46 +26,45 @@ module.exports = function(req, res) {
 //    console.log(File);
 //    console.log(i++);
     var MappedFile = req.app.locals.ini_db_mapper(File);
-    MappedFile.Info['User_FIO'] = req.body.FIO;
-    delete MappedFile['Config_changes'];
-    console.log('MappedFile: ');
+    var Auth = app.locals.Auth;
+    Auth.getAccount(req, function (err, result){
+        if (err){
+            console.log(err)
+        } else {
+            MappedFile.Info['User_id'] = result._id;
+            delete MappedFile['Config_changes'];
+            console.log('MappedFile: ');
 //    var MappedFile = File;
 
 //    console.log(MappedFile);
-    console.log(i++);
-    collection.save(MappedFile, function(err){
-        if ( err && err.code !== 11000 ) {
-            console.log(err);
-            console.log(err.code);
-            res.redirect('back');
-            res.end();
+            console.log(i++);
+            collection.save(MappedFile, function(err){
+                if ( err && err.code !== 11000 ) {
+                    console.log(err);
+                    console.log(err.code);
+                    res.redirect('back');
+                    res.end();
 //            res.send('Another error showed up');
 //            return;
-        } else
+                } else
 
-        //duplicate key
-        if ( err && err.code === 11000 ) {
-            console.log('error: Comp already exists');
-            res.redirect('/');
-            res.end();
+                //duplicate key
+                if ( err && err.code === 11000 ) {
+                    console.log('error: Comp already exists');
+                    res.redirect('/');
+                    res.end();
 //            return;
-        } else {
-            res.redirect('back');
-            res.end();
+                } else {
+                    res.redirect('back');
+                    res.end();
+                }
+
+
+            })
+            console.log(i++);
+            fs.unlink(req.files.displayImage.path);
         }
+    });
 
 
-    })
-    console.log(i++);
-    fs.unlink(req.files.displayImage.path);
-//    fs.unlink(MappedFile.path);
-//    fs.rename(req.files.displayImage.path , "." + path.sep + "public" + path.sep + "uploads" + path.sep + req.files.displayImage.name, function (err) {
-//            if(err) {
-//                console.log(err);
-//            } else {
-//                console.log("The file was saved!");
-//                res.redirect('back');
-//            }
-//        }
-//    );
 }

@@ -1,5 +1,5 @@
 //extends layout
-script(src = "js/edit.js")
+
 
 style(type='text/css')
     input {
@@ -7,21 +7,23 @@ style(type='text/css')
     }
 div.row
     h1= title
-h1= title
 block content
+    script(src="/js/jquery.form.js")
+
+    script(src = "js/edit.js")
     div.container
         
         
             form(action="", method="post").col-md-3
                 .form-group
                     label(class="input") Фамилия
-                    input(type="text", name="surname", value=json.surname)
+                    input(type="text", name="surname", id="surname", value=json.surname)
                 .form-group
                     label(class="input") Имя
-                    input(type="text", name="username", value=json.name)
+                    input(type="text", name="name", id="name", value=json.name)
                 .form-group
                     label(class="input") Отчество
-                    input(type="text", name="secondName", value=json.secondName)
+                    input(type="text", name="secondName", id="secondName", value=json.secondName)
                 .form-group
                     label(class="input") Место работы
                 select#upr.form-control
@@ -32,3 +34,11 @@ block content
                         option(value=val.name, selected = selected)= val.name
 
                 .btn(id="submit") Сохранить
+            div.col-md-3
+                a(href = "files/Checkcfg.exe") Cкачать программу
+            form(action="/upload", method="post", enctype="multipart/form-data", id="uploadForm").col-md-3
+                input(type="file", name="displayImage")
+                input(type='submit', value='Upload file to server') Upload
+                div.progress
+                div#status
+

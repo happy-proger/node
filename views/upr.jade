@@ -1,0 +1,112 @@
+//extends layout
+
+
+style(type='text/css')
+    input {
+        float: right;
+    }
+div.row
+    h1= title
+block content
+    script(src="/js/jquery.form.js")
+
+
+    div.container
+        
+        
+            form(action="", method="post").col-md-3
+
+                .form-group
+                    label(class="input") Имя
+                    input(type="text", name="name", id="name", value=json.name)
+
+
+
+
+    .container
+       style(type='text/css')
+            select {
+                float: right;
+            }
+        form(action="", method="post").col-md-6
+
+            .form-group
+                label(class="input") Опис/Назва каналів зв'язку
+                input(type="text", name="desc", id="desc", value=json.descr)=json.descr
+            .form-group
+                label(class="input") Цільове призначення
+                select#purp
+                    option(value = 'Загальний доступ до мережі Інтернет', name = json.purp) Загальний доступ до мережі Інтернет
+                    option(value = 'Виділений канал', name = json.purp) Виділений канал
+            .form-group
+                label(class="input") Провайдер
+
+                select#prov
+                    option(value = 'Дніпронет', name = json.prov) "Дніпронет"
+                    option(value = 'КТБ', name = json.prov) "КТБ"
+                    option(value = 'Укртелеком', name = json.prov) "Укртелеком"
+                    option(value = 'Атлас', name = json.prov) "Атлас"
+                    option(value = 'Київстар', name = json.prov) "Київстар"
+                    option(value = 'Інтертелеком', name = json.prov) "Інтертелеком"
+            .form-group
+                label(class="input") Тип каналу
+                select#ctype
+                    option(value = 'Телефонний ADSL', name = json.ctype) "Телефонний (ADSL)"
+                    option(value = 'Кабельний', name = json.ctype) "Кабельний"
+                    option(value = 'Wi-Fi', name = json.ctype) "Wi-Fi"
+                    option(value = 'Мобільний', name = json.ctype) "Мобільний"
+            .form-group
+                label(class="input") Швидкість приймання
+                input(type="text", name="dspd", id="dspd", value=json.dspd)=json.dspd
+                p Мбіт/с
+            .form-group
+                label(class="input") Швидкість передавання
+                input(type="text", name="uspd", id="uspd", value=json.uspd)=json.uspd
+                p Мбіт/с
+            .form-group
+                label(class="input") Кількість підключених ПК
+                input(type="text", name="cq", id="cq", value=json.cq)=json.cq
+        form(action="", method="post").col-md-6
+
+
+
+              table
+                thead
+                    tr: th Перелік периферійного устаткування
+                tbody
+                    tr
+                        td
+                        td
+                         label.input Кольорова матриця
+                        td
+                         label.input Чорно-біла матриця
+                    tr
+                        td
+                         label.input МФУ
+                        td
+                         input#MFU_color(type="text", name="MFU_color", value=json.MFU_color)=json.MFU_color
+                        td
+                         input#MFU_bw(type="text", name="MFU_bw", value=json.MFU_bw)=json.MFU_bw
+                    tr
+                        td
+                            label.input Копіювальна техніка
+                        td
+                            input#Copier_color(type="text", name="Copier_color", value=json.Copier_color)=json.Copier_color
+                        td
+                            input#Copier_bw(type="text", name="Copier_bw", value=json.Copier_bw)=json.Copier_bw
+                    tr
+                        td
+                            label.input Принтери
+                        td
+                            input#Printer_color(type="text", name="Printer_color", value=json.Printer_color)=json.Printer_color
+                        td
+                            input#Printer_bw(type="text", name="Printer_bw", value=json.Printer_bw)=json.Printer_bw
+                    tr
+                        td
+                            label.input Сканери
+                        td
+                            input#Scanner_color(type="text", name="Scanner_color", value=json.Scanner_color)=json.Scanner_color
+                        td
+                            input#Scanner_bw(type="text", name="Scanner_bw", value=json.Scanner_bw)=json.Scanner_bw
+      .btn(id="submit") Сохранить
+    script(src = "js/upr.js")

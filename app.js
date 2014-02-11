@@ -54,7 +54,7 @@ if ('development' == app.get('env')) {
 
 ControllerTree.init.db(app.get('db-uri'));
 console.log(process.versions);
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), "0.0.0.0", function(){
     console.log('Express server listening on port ' + app.get('port'));
     console.log(process.memoryUsage());
 //   console.log(app.routes);

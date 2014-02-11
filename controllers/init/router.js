@@ -69,6 +69,10 @@ module.exports = function (app, ControllerTree) {
             get: ControllerTree.action.view.edit ,
             post: ControllerTree.action.store.edit
         }
+        , '/&upr': {
+            get: ControllerTree.action.view.upr ,
+            post: ControllerTree.action.store.upr
+        }
         ,'/&form': {
             get: ControllerTree.action.view.form ,
             post: ControllerTree.action.store.form
