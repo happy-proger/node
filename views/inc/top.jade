@@ -6,16 +6,18 @@ div
               a.navbar-brand(href='#') Brand
             ul.nav.navbar-nav
               li
-                a#prev.btn < Назад
+                a#prev.btn.btn-info
+                    strong <  Назад
               li
-                a#next.btn Вперед >
+                a#next.btn.btn-info
+                    strong Вперед >
               li
-                a#logout.btn [Выход]
-              li
-                a(href='#') Options
+                a#logout.btn.btn-info
+                    strong [Выход]
+
           .container
             form.form-inline
-              h1 Select
+
               select#select.form-control
                   each val in menu
                       option(value=val.path)= val.name

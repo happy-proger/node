@@ -3,7 +3,7 @@
  */
 $(function () {
 //    alert ('ya add.js');
-$('#purp').val()
+    $( "#date_pr" ).appendDtpicker();
     $.fn.serializeObject = function()
     {
         var o = {};
@@ -31,12 +31,14 @@ $('#purp').val()
             "name":$('#name').val(),
             "secondName":$('#secondName').val(),
             "surname":$('#surname').val(),
-            "upr":$('#upr').val()
+            "date_pr":$( "#date_pr" ).val(),
+            "spys":$( "#spys" ).val()
+//            "upr":$('#upr').val()
         }
         console.log(data);
 //        var data = form.serializeObject();
 //        console.log('data: ' + data);
-        alert (JSON.stringify(data));
+//        alert (JSON.stringify(data));
 //        alert ('raw form: ' + JSON.stringify($('#add').serializeArray()));
 //        alert ('ajax start: ' + JSON.stringify(data));
         $.ajax({

@@ -26,45 +26,50 @@ module.exports = function(req, res) {
 //    console.log(File);
 //    console.log(i++);
     var MappedFile = req.app.locals.ini_db_mapper(File);
-    var Auth = app.locals.Auth;
-    Auth.getAccount(req, function (err, result){
-        if (err){
-            console.log(err)
-        } else {
-            MappedFile.Info['User_id'] = result._id;
-            delete MappedFile['Config_changes'];
-            console.log('MappedFile: ');
+    if (MappedFile.hasOwnProperty('Info')){
+
+
+        var Auth = app.locals.Auth;
+        Auth.getAccount(req, function (err, result){
+            if (err){
+                console.log(err)
+            } else {
+                MappedFile.Info['User_id'] = result._id;
+                delete MappedFile['Config_changes'];
+                console.log('MappedFile: ');
 //    var MappedFile = File;
 
 //    console.log(MappedFile);
-            console.log(i++);
-            collection.save(MappedFile, function(err){
-                if ( err && err.code !== 11000 ) {
-                    console.log(err);
-                    console.log(err.code);
-                    res.redirect('back');
-                    res.end();
+                console.log(i++);
+                collection.save(MappedFile, function(err){
+                    if ( err && err.code !== 11000 ) {
+                        console.log(err);
+                        console.log(err.code);
+                        res.redirect('back');
+                        res.end();
 //            res.send('Another error showed up');
 //            return;
-                } else
+                    } else
 
-                //duplicate key
-                if ( err && err.code === 11000 ) {
-                    console.log('error: Comp already exists');
-                    res.redirect('/');
-                    res.end();
+                    //duplicate key
+                    if ( err && err.code === 11000 ) {
+                        console.log('error: Comp already exists');
+                        res.redirect('/');
+                        res.end();
 //            return;
-                } else {
-                    res.redirect('back');
-                    res.end();
-                }
+                    } else {
+                        res.redirect('back');
+                        res.end();
+                    }
 
 
-            })
-            console.log(i++);
-            fs.unlink(req.files.displayImage.path);
-        }
-    });
-
+                })
+                console.log(i++);
+                fs.unlink(req.files.displayImage.path);
+            }
+        });
+    } else {
+        res.json(400, {err:'wrong file'})
+    }
 
 }

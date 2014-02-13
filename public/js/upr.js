@@ -13,6 +13,28 @@ $(function () {
 
 //    alert ($('#prov').options[1].val());
 //    $("#prov [value=$('#prov_s').value]").attr("selected","selected");
+    function addRow(tableID) {
+
+        var table = document.getElementById(tableID);
+
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+
+        var cell1 = row.insertCell(0);
+        var element1 = document.createElement("input");
+        element1.type = "checkbox";
+        cell1.appendChild(element1);
+
+        var cell2 = row.insertCell(1);
+        cell2.innerHTML = rowCount + 1;
+
+        var cell3 = row.insertCell(2);
+        var element2 = document.createElement("input");
+        element2.type = "text";
+        cell3.appendChild(element2);
+
+    }
+
     $.fn.serializeObject = function()
     {
         var o = {};
@@ -29,27 +51,40 @@ $(function () {
         });
         return o;
     };
+    $('#add_channel').on('click', function() {
+        var tr = $('#cinfo0');
+        var clone = tr.clone();
+        clone.find(':text').val('');
+        tr.after(clone);
+    });
     $('#submit').on('click', function() {
 //        alert('ya submit');
-        var form = $('#add');
-        var data = {
-            "name":$('#name').val(),
-            "desc":$('#desc').val(),
-            "purp":$('#purp').val(),
-            "prov":$('#prov').val(),
-            "ctype":$('#ctype').val(),
-            "dspd":$('#dspd').val(),
-            "uspd":$('#uspd').val(),
-            "cq":$('#cq').val(),
-            "MFU_color":$('#MFU_color').val(),
-            "MFU_bw":$('#MFU_bw').val(),
-            "Copier_color":$('#Copier_color').val(),
-            "Copier_bw":$('#Copier_bw').val(),
-            "Scanner_color":$('#Scanner_color').val(),
-            "Scanner_bw":$('#Scanner_bw').val()
-        }
-        console.log(data);
-//        var data = form.serializeObject();
+        $('#cinfo0').each(function(){
+            
+        })
+        var data = $('#inet').serializeObject()
+//        var form = $('#add');
+//        var data = {
+//            "name":$('#name').val(),
+//            "desc":$('#desc').val(),
+//            "purp":$('#purp').val(),
+//            "prov":$('#prov').val(),
+//            "ctype":$('#ctype').val(),
+//            "dspd":$('#dspd').val(),
+//            "uspd":$('#uspd').val(),
+//            "cq":$('#cq').val(),
+//            "MFU_color":$('#MFU_color').val(),
+//            "MFU_bw":$('#MFU_bw').val(),
+//            "Copier_color":$('#Copier_color').val(),
+//            "Copier_bw":$('#Copier_bw').val(),
+//            "Scanner_color":$('#Scanner_color').val(),
+//            "Scanner_bw":$('#Scanner_bw').val()
+//        }
+        alert(JSON.stringify(data));
+        var in1 = $('#in1').serializeObject();
+//        alert (JSON.stringify(in1))
+//        alert (JSON.stringify($('#inet').serializeObject()))
+//        alert (JSON.stringify($('#per').serializeObject()))
 //        console.log('data: ' + data);
 //        alert (JSON.stringify(data));
 //        alert ('raw form: ' + JSON.stringify($('#add').serializeArray()));

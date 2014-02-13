@@ -4,34 +4,37 @@ style(type='text/css')
     input {
         float: right;
     }
-div.row
-    h1= title
-h1= title
+h2 Реєтраційна форма
 block content
     div.container
         
         
-            form#add(action="", method="post").col-md-3
-                .form-group
-                    label(class="input") Логин
-                    input(type="text", name="username", id="username")
-                .form-group
-                    label(class="input") Фамилия
-                    input(type="text", name="surname", id="surname")
-                .form-group
-                    label(class="input") Имя
-                    input(type="text", name="name", id="name")
-                .form-group
-                    label(class="input") Отчество
-                    input(type="text", name="secondName", id="secondName")
-                .form-group
-                    label(class="input") Пароль
-                    input(type="password", name="pass", id="pass")
-                .form-group
-                    label(class="input") Место работы
+            form#add(action="", method="post").form-horizontal.col-md-7
+                    .col-md-3
+                        .form-group
+                            label(class="input.form-control") Логін
+                            input.form-control(type="text", name="username", id="username")
+                        .form-group
+                            label(class="input.form-control") Пароль
+                            input.form-control(type="password", name="pass", id="pass")
+                        .form-group
+                            label(class="input.form-control") Місце роботи
+                            select#upr.form-control
+                                each val, key in list
+                                    option(value=val.name)= val.name
 
-                select#upr.form-control
-                    each val, key in list
-                        option(value=val.name)= val.name
+                    .col-md-1
+                    .col-md-3
+                        .form-group
+                            label(class="input.form-control") Фамілія
+                            input.form-control(type="text", name="surname", id="surname")
+                        .form-group
+                            label(class="input.form-control") Ім'я
+                            input.form-control(type="text", name="name", id="name")
+                        .form-group
+                            label(class="input.form-control") По батькові
+                            input.form-control(type="text", name="secondName", id="secondName")
+                        button#submit.btn.btn-success Зареєструватися
 
-                .btn(id="submit") Register
+
+

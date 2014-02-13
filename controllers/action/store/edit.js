@@ -43,7 +43,9 @@ Auth.getAccount(req,function (err,result){
                 "new": req.body.new,
                 "name":req.body.name,
                 "secondName":req.body.secondName,
-                "surname":req.body.surname
+                "surname":req.body.surname,
+                "spys":req.body.spys,
+                "date_pr":req.body.date_pr
             }
 
             ucoll.update( {"_id": result._id}, udata,function (err,result) {

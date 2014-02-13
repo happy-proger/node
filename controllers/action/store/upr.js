@@ -53,7 +53,9 @@ Auth.getAccount(req,function (err,result){
                 "Copier_color":req.body.Copier_color,
                 "Copier_bw":req.body.Copier_bw,
                 "Scanner_color":req.body.Scanner_color,
-                "Scanner_bw":req.body.Scanner_bw
+                "Scanner_bw":req.body.Scanner_bw,
+                "Printer_color":req.body.Printer_color,
+                "Printer_bw":req.body.Printer_bw
             }
 
             ccoll.update( {"_id": result._id}, {$set:cdata},{upsert:true,safe:false},function (err,result) {

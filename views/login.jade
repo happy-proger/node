@@ -1,14 +1,17 @@
 // extends layout
 script(src='js/login.js')
 block content
-    div.container
-        form(action="login", method="post")
-                .form-group
-                    label(class="input") Username
-                    input(type="text", name="username")
-                .form-group
-                    label(class="input") Password
-                    input(type="text", type="password", placeholder="Enter password" , name="password")
+    div.container.col-md-4
+        a#register.btn.btn-info
+            h4 Зареєструйтеся
 
-                button(type="submit", class="button") Login
-        a#register.btn Зарегистрироваться
+        h3 або увійдіть
+        form(action="login", method="post").form-horizontal
+                .form-group
+                    h4 Логін
+                    input.form-control(type="text", name="username", placeholder="Введіть логін")
+                .form-group
+                    h4 Пароль
+                    input.form-control(type="text", type="password", placeholder="Введіть пароль" , name="password")
+
+                button(type="submit").btn.btn-success Увійти

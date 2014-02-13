@@ -6,6 +6,7 @@ module.exports = function(req, res) {
 
     //send current values to .jade
     //get username
+    console.log('test_edit');
     Auth.getAccount(req, function (err,result){
         if (err){
             console.log(err);

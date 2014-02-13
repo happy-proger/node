@@ -9,12 +9,14 @@ div.row
     h1= title
 block content
     script(src="/js/jquery.form.js")
-
+    script(src="//code.jquery.com/ui/1.10.4/jquery-ui.js")
+    link(href="css/datepicker.css", rel="stylesheet")
+    script(src="js/datepicker.js")
     script(src = "js/edit.js")
     div.container
         
         
-            form(action="", method="post").col-md-3
+            form.row(action="", method="post").col-md-3
                 .form-group
                     label(class="input") Фамилия
                     input(type="text", name="surname", id="surname", value=json.surname)
@@ -25,20 +27,37 @@ block content
                     label(class="input") Отчество
                     input(type="text", name="secondName", id="secondName", value=json.secondName)
                 .form-group
+                    label(class="input") Дата придбання
+                    input(type="text", name="datepicker", id="date_pr", value=json.date_pr)
+
+                .form-group
+                    label(class="input") Застаріла модель
+                    select#spys.form-control
+                        each val, key in {'true':'Так','false':'Ні'}
+                            - var selected = 'false'
+                            - var name = key
+                            - var atr = json.spys
+                            if key == json.spys
+                                selected = 'true'
+                            option(value=key, selected = selected, name= name, atr= atr)= val
+                //.form-group
                     label(class="input") Место работы
-                select#upr.form-control
-                    each val, key in list
-                        - var selected = 'false'
-                        if val.name == json.upr
-                            selected = 'true'
-                        option(value=val.name, selected = selected)= val.name
+                    select#upr.form-control
+                        each val, key in list
+                            - var selected = 'false'
+                            if val.name == json.upr
+                                selected = 'true'
+                            option(value=val.name, selected = selected)= val.name
 
                 .btn(id="submit") Сохранить
             div.col-md-3
-                a(href = "files/Checkcfg.exe") Cкачать программу
-            form(action="/upload", method="post", enctype="multipart/form-data", id="uploadForm").col-md-3
-                input(type="file", name="displayImage")
-                input(type='submit', value='Upload file to server') Upload
-                div.progress
-                div#status
+            div.col-md-3
+               .row
+                a.col-md-2(href = "files/Checkcfg.exe") Cкачать программу
+               .row
+                form.col-md-2(action="/upload", method="post", enctype="multipart/form-data", id="uploadForm").col-md-3
+                    input(type="file", name="displayImage")
+                    input(type='submit', value='Upload file to server') Upload
+                    div.progress
+                    div#status
 
