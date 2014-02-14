@@ -1,12 +1,66 @@
 //extends layout
-
-
+mixin channel(channel)
+    tr#cinfo0
+        td
+            input.form-control(type="text", name="desc", id="desc", value=channel.desc)=channel.desc
+        td
+            select#purp.form-control(name = "purp")
+                option(value = 'Загальний доступ до мережі Інтернет', name = channel.purp) Загальний доступ до мережі Інтернет
+                option(value = 'Виділений канал', name = channel.purp) Виділений канал
+        td
+            select#prov.form-control(name = "prov")
+                option(value = 'Дніпронет', name = channel.prov) "Дніпронет"
+                option(value = 'КТБ', name = channel.prov) "КТБ"
+                option(value = 'Укртелеком', name = channel.prov) "Укртелеком"
+                option(value = 'Атлас', name = channel.prov) "Атлас"
+                option(value = 'Київстар', name = channel.prov) "Київстар"
+                option(value = 'Інтертелеком', name = channel.prov) "Інтертелеком"
+        td
+            select#ctype.form-control(name = "ctype")
+                option(value = 'Телефонний ADSL', name = channel.ctype) "Телефонний (ADSL)"
+                option(value = 'Кабельний', name = channel.ctype) "Кабельний"
+                option(value = 'Wi-Fi', name = channel.ctype) "Wi-Fi"
+                option(value = 'Мобільний', name = channel.ctype) "Мобільний"
+        td
+            input.form-control(type="text", name="dspd", id="dspd", value=channel.dspd)=channel.dspd
+            td
+                input.form-control(type="text", name="uspd", id="uspd", value=channel.uspd)=channel.uspd
+        td
+            input.form-control(type="text", name="cq", id="cq", value=channel.cq)=channel.cq
+mixin channel_template
+    tr#cinfo0
+        td
+            input.form-control(type="text", name="desc", id="desc", value='')=''
+        td
+            select#purp.form-control(name = "purp")
+                option(value = 'Загальний доступ до мережі Інтернет', name = '') Загальний доступ до мережі Інтернет
+                option(value = 'Виділений канал', name = '') Виділений канал
+        td
+            select#prov.form-control(name = "prov")
+                option(value = 'Дніпронет', name = '') "Дніпронет"
+                option(value = 'КТБ', name = '') "КТБ"
+                option(value = 'Укртелеком', name = '') "Укртелеком"
+                option(value = 'Атлас', name = '') "Атлас"
+                option(value = 'Київстар', name = '') "Київстар"
+                option(value = 'Інтертелеком', name = '') "Інтертелеком"
+        td
+            select#ctype.form-control(name = "ctype")
+                option(value = 'Телефонний ADSL', name = '') "Телефонний (ADSL)"
+                option(value = 'Кабельний', name = '') "Кабельний"
+                option(value = 'Wi-Fi', name = '') "Wi-Fi"
+                option(value = 'Мобільний', name = '') "Мобільний"
+        td
+            input.form-control(type="text", name="dspd", id="dspd", value='')=''
+            td
+                input.form-control(type="text", name="uspd", id="uspd", value='')=''
+        td
+            input.form-control(type="text", name="cq", id="cq", value='')=''
 style(type='text/css')
     input {
         float: right;
     }
 div.row
-    h1= title
+    h1 Форма обліку інформаційно-технічного забезпечення
 block content
     script(src="/js/jquery.form.js")
 
@@ -17,7 +71,7 @@ block content
             form(action="", method="post").col-md-3
 
                 .form-group
-                    label(class="input") Имя
+                    label(class="input") Назва установи
                     a.form-control.input-inactive(type="text", name="name", id="name", value=json.name)=json.name
 
 
@@ -44,78 +98,59 @@ block content
                     label(class="input") Швидкість приймання, Мбіт/с
                 td
                     label(class="input") Швидкість передавання, Мбіт/с
+                td
+                    label(class="input") Кількість підключених комп'ютерів
+              if json.channels[0].desc
+                each channel in json.channels
+                    //a=channel.desc
+                    +channel(channel)
+              else
 
-
-              tr#cinfo0
-                td
-                    input.form-control(type="text", name="desc", id="desc", value=json.descr)=json.descr
-                td
-                    select#purp.form-control(name = "purp")
-                        option(value = 'Загальний доступ до мережі Інтернет', name = json.purp) Загальний доступ до мережі Інтернет
-                        option(value = 'Виділений канал', name = json.purp) Виділений канал
-                td
-                    select#prov.form-control(name = "prov")
-                        option(value = 'Дніпронет', name = json.prov) "Дніпронет"
-                        option(value = 'КТБ', name = json.prov) "КТБ"
-                        option(value = 'Укртелеком', name = json.prov) "Укртелеком"
-                        option(value = 'Атлас', name = json.prov) "Атлас"
-                        option(value = 'Київстар', name = json.prov) "Київстар"
-                        option(value = 'Інтертелеком', name = json.prov) "Інтертелеком"
-                td
-                    select#ctype.form-control(name = "ctype")
-                        option(value = 'Телефонний ADSL', name = json.ctype) "Телефонний (ADSL)"
-                        option(value = 'Кабельний', name = json.ctype) "Кабельний"
-                        option(value = 'Wi-Fi', name = json.ctype) "Wi-Fi"
-                        option(value = 'Мобільний', name = json.ctype) "Мобільний"
-                td
-                    input.form-control(type="text", name="dspd", id="dspd", value=json.dspd)=json.dspd
-
-                td
-                    input.form-control(type="text", name="uspd", id="uspd", value=json.uspd)=json.uspd
+                +channel_template()
 
             a#add_channel.btn.btn-default Додати ще один канал
             .row(style="margin-top: 40px;")
 
+        form#cinfo(action="", name='inet', method='post')
 
-
-            table#per.table.table-bordered(name= "preiferals")
-                thead
-                    th Перелік периферійного устаткування
-                tbody
-                    tr
-                        td
-                         label.input Тип устаткування
-                        td
-                         label.input Кольорова матриця
-                        td
-                         label.input Чорно-біла матриця
-                    tr
-                        td
-                         label.input.form-control МФУ
-                        td
-                         input.form-control#MFU_color(type="text", name="MFU_color", value=json.MFU_color)=json.MFU_color
-                        td
-                         input.form-control#MFU_bw(type="text", name="MFU_bw", value=json.MFU_bw)=json.MFU_bw
-                    tr
-                        td
-                            label.input.form-control Копіювальна техніка
-                        td
-                            input.form-control#Copier_color(type="text", name="Copier_color", value=json.Copier_color)=json.Copier_color
-                        td
-                            input.form-control#Copier_bw(type="text", name="Copier_bw", value=json.Copier_bw)=json.Copier_bw
-                    tr
-                        td
-                            label.input.form-control Принтери
-                        td
-                            input.form-control#Printer_color(type="text", name="Printer_color", value=json.Printer_color)=json.Printer_color
-                        td
-                            input.form-control#Printer_bw(type="text", name="Printer_bw", value=json.Printer_bw)=json.Printer_bw
-                    tr
-                        td
-                            label.input.form-control Сканери
-                        td
-                            input.form-control#Scanner_color(type="text", name="Scanner_color", value=json.Scanner_color)=json.Scanner_color
-                        td
-                            input.form-control#Scanner_bw(type="text", name="Scanner_bw", value=json.Scanner_bw)=json.Scanner_bw
-      button.btn.btn-success(id="submit") Сохранить
+                table#per.table.table-bordered(name= "preiferals")
+                    thead
+                        th Перелік периферійного устаткування
+                    tbody
+                        tr
+                            td
+                             label.input Тип устаткування
+                            td
+                             label.input Кольорова матриця
+                            td
+                             label.input Чорно-біла матриця
+                        tr
+                            td
+                             label.input.form-control МФУ
+                            td
+                             input.form-control#MFU_color(type="text", name="MFU_color", value=json.MFU_color)=json.MFU_color
+                            td
+                             input.form-control#MFU_bw(type="text", name="MFU_bw", value=json.MFU_bw)=json.MFU_bw
+                        tr
+                            td
+                                label.input.form-control Копіювальна техніка
+                            td
+                                input.form-control#Copier_color(type="text", name="Copier_color", value=json.Copier_color)=json.Copier_color
+                            td
+                                input.form-control#Copier_bw(type="text", name="Copier_bw", value=json.Copier_bw)=json.Copier_bw
+                        tr
+                            td
+                                label.input.form-control Принтери
+                            td
+                                input.form-control#Printer_color(type="text", name="Printer_color", value=json.Printer_color)=json.Printer_color
+                            td
+                                input.form-control#Printer_bw(type="text", name="Printer_bw", value=json.Printer_bw)=json.Printer_bw
+                        tr
+                            td
+                                label.input.form-control Сканери
+                            td
+                                input.form-control#Scanner_color(type="text", name="Scanner_color", value=json.Scanner_color)=json.Scanner_color
+                            td
+                                input.form-control#Scanner_bw(type="text", name="Scanner_bw", value=json.Scanner_bw)=json.Scanner_bw
+      button.btn.btn-success(id="submit") Зберегти
     script(src = "js/upr.js")

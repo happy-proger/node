@@ -5,8 +5,29 @@ style(type='text/css')
     input {
         float: right;
     }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 999px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
 div.row
-    h1= title
+    h1 Комп'ютер користувача
 block content
     script(src="/js/jquery.form.js")
     script(src="//code.jquery.com/ui/1.10.4/jquery-ui.js")
@@ -16,19 +37,37 @@ block content
     div.container
         
         
-            form.row(action="", method="post").col-md-3
+            form.form-horizontal(action="", method="post").col
+               .col-md-3
+                h3 Користувач
                 .form-group
-                    label(class="input") Фамилия
-                    input(type="text", name="surname", id="surname", value=json.surname)
+                    label(class="input") Прізвище
+                    input.form-control(type="text", name="surname", id="surname", value=json.surname)
                 .form-group
-                    label(class="input") Имя
-                    input(type="text", name="name", id="name", value=json.name)
+                    label(class="input") Ім'я
+                    input.form-control(type="text", name="name", id="name", value=json.name)
                 .form-group
-                    label(class="input") Отчество
-                    input(type="text", name="secondName", id="secondName", value=json.secondName)
+                    label(class="input") По батькові
+                    input.form-control(type="text", name="secondName", id="secondName", value=json.secondName)
+               .col-md-1
+               .col-md-3
+                h3 Комп'ютер
+
+
+                a.btn.btn-primary(href = "files/Checkcfg.exe") Завантажити программу
+
+
+                    //h4 Відправити результат
+                .input-group
+                    span.input-group-btn
+                        span.btn.btn-info.btn-file
+                            | Обрати файл…
+                            input(type='file')
+                    input.form-control(type='text', readonly='readonly')
+                button#send.btn.btn-success(type="button") Відправити результат
                 .form-group
                     label(class="input") Дата придбання
-                    input(type="text", name="datepicker", id="date_pr", value=json.date_pr)
+                    input.form-control(type="text", name="datepicker", id="date_pr", value=json.date_pr)
 
                 .form-group
                     label(class="input") Застаріла модель
@@ -40,24 +79,14 @@ block content
                             if key == json.spys
                                 selected = 'true'
                             option(value=key, selected = selected, name= name, atr= atr)= val
-                //.form-group
-                    label(class="input") Место работы
-                    select#upr.form-control
-                        each val, key in list
-                            - var selected = 'false'
-                            if val.name == json.upr
-                                selected = 'true'
-                            option(value=val.name, selected = selected)= val.name
+                                //.form-group
+                                    label(class="input") Место работы
+                                    select#upr.form-control
+                                        each val, key in list
+                                            - var selected = 'false'
+                                            if val.name == json.upr
+                                                selected = 'true'
+                                            option(value=val.name, selected = selected)= val.name
 
-                .btn(id="submit") Сохранить
-            div.col-md-3
-            div.col-md-3
-               .row
-                a.col-md-2(href = "files/Checkcfg.exe") Cкачать программу
-               .row
-                form.col-md-2(action="/upload", method="post", enctype="multipart/form-data", id="uploadForm").col-md-3
-                    input(type="file", name="displayImage")
-                    input(type='submit', value='Upload file to server') Upload
-                    div.progress
-                    div#status
-
+                button.btn.btn-success(id="submit", type="button") Зберегти
+                                //div.col-md-1

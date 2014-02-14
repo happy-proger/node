@@ -62,7 +62,21 @@ $(function () {
         $('#cinfo0').each(function(){
             
         })
-        var data = $('#inet').serializeObject()
+        var inet_i = $('#inet').serializeObject();
+        var inet_o = [];
+        for (var i=0;i<inet_i.desc.length;i++){
+            inet_o.push({
+                "desc":inet_i.desc[i],
+                "purp":inet_i.purp[i],
+                "prov":inet_i.prov[i],
+                "ctype":inet_i.ctype[i],
+                "dspd":inet_i.dspd[i],
+                "uspd":inet_i.uspd[i],
+                "cq":inet_i.cq[i]
+        })
+        }
+        var data = $('#cinfo').serializeObject();
+        data.channels = inet_o;
 //        var form = $('#add');
 //        var data = {
 //            "name":$('#name').val(),
@@ -80,11 +94,11 @@ $(function () {
 //            "Scanner_color":$('#Scanner_color').val(),
 //            "Scanner_bw":$('#Scanner_bw').val()
 //        }
-        alert(JSON.stringify(data));
-        var in1 = $('#in1').serializeObject();
+//        alert(JSON.stringify(data));
+//        var in1 = $('#in1').serializeObject();
 //        alert (JSON.stringify(in1))
 //        alert (JSON.stringify($('#inet').serializeObject()))
-//        alert (JSON.stringify($('#per').serializeObject()))
+        alert (JSON.stringify(data))
 //        console.log('data: ' + data);
 //        alert (JSON.stringify(data));
 //        alert ('raw form: ' + JSON.stringify($('#add').serializeArray()));

@@ -19,7 +19,7 @@ module.exports = function(req, res) {
     console.log(i++);
 //    console.log(path.extname);
 //        if ("ini" != path.extname) {
-    var File = ini.parse(readFileSync_encoding(req.files.displayImage.path , 'windows-1251'))
+    var File = ini.parse(readFileSync_encoding(req.files[0].path , 'windows-1251'))
 
 //        }
     console.log('File: ');
@@ -35,37 +35,35 @@ module.exports = function(req, res) {
                 console.log(err)
             } else {
                 MappedFile.Info['User_id'] = result._id;
+                MappedFile._id = result._id;
                 delete MappedFile['Config_changes'];
                 console.log('MappedFile: ');
 //    var MappedFile = File;
 
-//    console.log(MappedFile);
+    console.log(MappedFile);
                 console.log(i++);
-                collection.save(MappedFile, function(err){
+                collection.update( {"_id": result._id}, MappedFile,{upsert:true,safe:false}, function(err){
                     if ( err && err.code !== 11000 ) {
                         console.log(err);
                         console.log(err.code);
                         res.redirect('back');
-                        res.end();
+//                        res.end();
 //            res.send('Another error showed up');
 //            return;
-                    } else
-
-                    //duplicate key
-                    if ( err && err.code === 11000 ) {
+                    } else if ( err && err.code === 11000 ) {
                         console.log('error: Comp already exists');
                         res.redirect('/');
-                        res.end();
+//                        res.end();
 //            return;
                     } else {
-                        res.redirect('back');
-                        res.end();
+                        res.json({success:'success'});
+//                        res.end();
                     }
 
 
                 })
                 console.log(i++);
-                fs.unlink(req.files.displayImage.path);
+                fs.unlink(req.files[0].path);
             }
         });
     } else {

@@ -1,8 +1,74 @@
 /**
  * Created by Admin on 14.01.14.
  */
+$(document)
+    .on('change', '.btn-file :file', function() {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+        var files = event.target.files;
+    });
+
 $(function () {
+    function uploadFiles(event)
+    {
+        event.stopPropagation(); // Stop stuff happening
+        event.preventDefault(); // Totally stop stuff happening
+
+        // START A LOADING SPINNER HERE
+
+        // Create a formdata object and add the files
+        var data = new FormData();
+        $.each(files, function(key, value)
+        {
+            data.append(key, value);
+        });
+
+        $.ajax({
+            url: '/upload',
+            type: 'POST',
+            data: data,
+            cache: false,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(data, textStatus, jqXHR)
+            {
+                if(typeof data.error === 'undefined')
+                {
+                    // Success so call function to process the form
+//                submitForm(event, data);
+                    alert('uploaded!')
+                }
+                else
+                {
+                    // Handle errors here
+                    console.log('ERRORS: ' + data.error);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+                // Handle errors here
+                console.log('ERRORS: ' + textStatus);
+                // STOP LOADING SPINNER
+            }
+        });
+    }
 //    alert ('ya add.js');
+    var files = '';
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+        files = event.target.files;
+    });
     $( "#date_pr" ).appendDtpicker();
     $.fn.serializeObject = function()
     {
@@ -20,6 +86,7 @@ $(function () {
         });
         return o;
     };
+    $('#send').on('click', uploadFiles);
     $('#submit').on('click', function() {
 //        alert('ya submit');
         var form = $('#add');

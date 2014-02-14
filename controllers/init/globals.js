@@ -114,15 +114,15 @@ module.exports = function (app) {
     app.locals.menu = [
 
          {
-            name: 'Авторизация',
+            name: 'Авторизація',
             path: '/login',
             visibility:['anonymous']},
         {
-            name: 'Регистрация',
+            name: 'Реєстрація',
             path: '/register',
             visibility:['anonymous']},
          {
-            name: 'Редактирование',
+            name: 'Редагування',
             path: '/user',
             visibility:['user']},
 
@@ -131,7 +131,7 @@ module.exports = function (app) {
             path: '/add',
             visibility:['admin']},
          {
-            name: 'Редактирование',
+            name: 'Редагування',
             path: '/upr',
             visibility:['upr']},
          {
